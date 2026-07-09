@@ -47,75 +47,25 @@
 
   const STORAGE_KEY = 'flagship.v1';
 
-  /*** PWA — REGISTER SERVICE WORKER ***/
-  const updateToast = qs('#updateToast');
-  const btnUpdateRefresh = qs('#btnUpdateRefresh');
-
+  /*** PWA REMOVED — ONE-TIME CLEANUP FOR ANYONE WHO ALREADY INSTALLED IT ***/
+  // Flagify is now browser-only; we no longer register a service worker or
+  // offer "Add to Home Screen". But anyone who installed it previously
+  // still has an old service worker controlling their instance, which can
+  // get stuck serving stale/broken content with no way to self-heal (the
+  // whole reason we're removing this). So: don't register sw.js for new
+  // visitors, but if a SW is already active from a past visit, unregister
+  // it and clear its caches so that visitor falls back to normal browser
+  // behavior too. Safe to delete this block entirely a few months from now
+  // once returning installed users have aged out.
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker
-        .register('sw.js')
-        .then((reg) => {
-          // Fires when the browser finds a *different* sw.js than the one
-          // currently controlling the page — i.e. a real update, not the
-          // very first install. We surface a dismissible toast rather than
-          // reloading automatically, so an in-progress answer is never
-          // interrupted without warning. Saved progress lives in
-          // localStorage — a separate storage bucket the service worker
-          // never touches — so refreshing (whenever the user chooses to)
-          // is always safe and never requires clearing site data.
-          reg.addEventListener('updatefound', () => {
-            const incoming = reg.installing;
-            if (!incoming) return;
-            incoming.addEventListener('statechange', () => {
-              if (incoming.state === 'installed' && navigator.serviceWorker.controller) {
-                if (updateToast) updateToast.hidden = false;
-              }
-            });
-          });
-        })
-        .catch((err) => console.warn('Service worker registration failed:', err));
+    navigator.serviceWorker.getRegistrations().then((regs) => {
+      regs.forEach((reg) => reg.unregister());
     });
+    if (window.caches) {
+      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+    }
   }
 
-  if (btnUpdateRefresh) {
-    btnUpdateRefresh.addEventListener('click', () => window.location.reload());
-  }
-
-  /*** PWA — INSTALL PROMPT ***/
-  // Chrome/Edge fire this once the browser decides the app meets the
-  // installability criteria (manifest + reachable icons + service worker
-  // over HTTPS). We stash the event and reveal our own button instead of
-  // relying on the easy-to-miss address-bar icon.
-  const btnInstall = qs('#btnInstall');
-  let deferredInstallPrompt = null;
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
-    if (btnInstall) btnInstall.hidden = false;
-  });
-
-  if (btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-      if (!deferredInstallPrompt) return;
-      btnInstall.hidden = true;
-      deferredInstallPrompt.prompt();
-      await deferredInstallPrompt.userChoice;
-      deferredInstallPrompt = null;
-    });
-  }
-
-  // Already installed, or user just installed it — hide the button and
-  // don't show it again for this launch.
-  window.addEventListener('appinstalled', () => {
-    if (btnInstall) btnInstall.hidden = true;
-    deferredInstallPrompt = null;
-  });
-
-  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-    if (btnInstall) btnInstall.hidden = true;
-  }
   const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
   ).matches;

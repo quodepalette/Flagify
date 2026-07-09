@@ -23,14 +23,6 @@
     <link rel="icon" type="image/x-icon"
         href="https://res.cloudinary.com/dkds78kb3/image/upload/v1783554489/Flag_of_Ghana_vevbfy.png">
 
-    <!-- PWA / ADD TO HOME SCREEN -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Flagify">
-    <meta name="application-name" content="Flagify">
     <!-- OPEN GRAPH / SOCIAL MEDIA -->
     <meta property="og:title" content="Flagify — Guess the Flag, Country by Country">
     <meta property="og:description"
@@ -48,10 +40,6 @@
 </head>
 
 <body>
-    <div class="updateToast" id="updateToast" hidden role="status">
-        <span>✨ A new version of Flagify is ready.</span>
-        <button class="btn secondary" id="btnUpdateRefresh">Refresh</button>
-    </div>
     <div class="wrap" id="app" hidden>
         <header>
             <h1><img class="logo"
@@ -60,8 +48,6 @@
                 title="Your progress is saved to this device.">Progress: <strong id="badgeProgress"
                     style="color:var(--text)">0%</strong></span>
             <div class="toolbar">
-                <button class="btn secondary" id="btnInstall" hidden title="Install Flagify as an app on this device">⬇
-                    Install App</button>
                 <button class="btn secondary" id="btnSkip" title="Skip question (no penalty)"><span>⏭
                         Skip</span></button> <button class="btn ghost" id="btnReview" title="Review mistakes">🧠
                     Review</button> <label class="toggle" id="themeToggle" title="Toggle light / dark"> <input
