@@ -1006,6 +1006,45 @@ dialog[open] {
     border-bottom: 1px dashed var(--line);
 }
 
+/* CONTINENT COUNTRY LISTS — sit visually under their "There are N countries in X"
+   sentence rather than reading as another topic sentence */
+.new-content p.continent-list {
+    margin-top: -6px;
+    margin-bottom: 20px;
+    padding: 10px 14px;
+    background: var(--elev);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    font-size: 0.92em;
+    color: var(--muted);
+}
+
+/* UPDATE TOAST — tells users new files are ready without touching their
+   saved progress (localStorage) or forcing a mid-question reload */
+.updateToast {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: linear-gradient(180deg, var(--surface), var(--elev));
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+    color: var(--text);
+    font-size: 14px;
+    max-width: calc(100vw - 32px);
+}
+
+.updateToast[hidden] {
+    display: none;
+}
+
 /* EMPHASIS SPANS */
 .general-emphasis {
     font-weight: 700;

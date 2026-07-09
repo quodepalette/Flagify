@@ -48,12 +48,38 @@
   const STORAGE_KEY = 'flagship.v1';
 
   /*** PWA — REGISTER SERVICE WORKER ***/
+  const updateToast = qs('#updateToast');
+  const btnUpdateRefresh = qs('#btnUpdateRefresh');
+
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker
         .register('sw.js')
+        .then((reg) => {
+          // Fires when the browser finds a *different* sw.js than the one
+          // currently controlling the page — i.e. a real update, not the
+          // very first install. We surface a dismissible toast rather than
+          // reloading automatically, so an in-progress answer is never
+          // interrupted without warning. Saved progress lives in
+          // localStorage — a separate storage bucket the service worker
+          // never touches — so refreshing (whenever the user chooses to)
+          // is always safe and never requires clearing site data.
+          reg.addEventListener('updatefound', () => {
+            const incoming = reg.installing;
+            if (!incoming) return;
+            incoming.addEventListener('statechange', () => {
+              if (incoming.state === 'installed' && navigator.serviceWorker.controller) {
+                if (updateToast) updateToast.hidden = false;
+              }
+            });
+          });
+        })
         .catch((err) => console.warn('Service worker registration failed:', err));
     });
+  }
+
+  if (btnUpdateRefresh) {
+    btnUpdateRefresh.addEventListener('click', () => window.location.reload());
   }
 
   /*** PWA — INSTALL PROMPT ***/
