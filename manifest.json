@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "Flagship",
-  "short_name": "Flagship",
+  "name": "Flagify",
+  "short_name": "Flagify",
   "description": "Guess every country's flag. 197 UN-recognized countries, progress saved on your device.",
   "start_url": "./index.html",
   "scope": "./",

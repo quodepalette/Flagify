@@ -1,7 +1,7 @@
-// Flagship service worker — offline-first cache for the app shell.
+// Flagify service worker — offline-first cache for the app shell.
 // Bump this version string whenever you change index.html/scripts.js/styles.css
 // so returning visitors pick up the new files instead of a stale cache.
-const CACHE_NAME = 'flagship-cache-v2';
+const CACHE_NAME = 'flagify-cache-v3';
 const APP_SHELL = [
   './',
   './index.html',

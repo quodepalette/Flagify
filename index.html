@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Flagship — Guess the Flag, Country by Country</title>
+    <title>Flagify — Guess the Flag, Country by Country</title>
     <meta name="description"
-        content="Flagship: guess every country's flag. 197 UN-recognized countries. Progress and score saved locally so you can resume anytime." />
+        content="Flagify: guess every country's flag. 197 UN-recognized countries. Progress and score saved locally so you can resume anytime." />
     <link rel="preconnect" href="https://restcountries.com" crossorigin>
     <meta name="robots" content="index, follow">
     <!-- ALTERNATIVES: NOINDEX, NOFOLLOW, NOARCHIVE, ETC. -->
@@ -17,7 +17,7 @@
     <meta name="geo.placename" content="Accra">
     <meta name="author" content="JoErl">
     <meta name="keywords"
-        content="flagship, flag game, guess the flag, country quiz, geography game, web game, world flags, frontend development, responsive design">
+        content="flagify, flag game, guess the flag, country quiz, geography game, web game, world flags, frontend development, responsive design">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
     <link rel="icon" type="image/x-icon"
@@ -29,15 +29,15 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Flagship">
-    <meta name="application-name" content="Flagship">
+    <meta name="apple-mobile-web-app-title" content="Flagify">
+    <meta name="application-name" content="Flagify">
     <!-- OPEN GRAPH / SOCIAL MEDIA -->
-    <meta property="og:title" content="Flagship — Guess the Flag, Country by Country">
+    <meta property="og:title" content="Flagify — Guess the Flag, Country by Country">
     <meta property="og:description"
         content="Guess every country's flag. 197 UN-recognized countries. Progress and score saved locally so you can resume anytime.">
     <meta property="og:type" content="website">
     <!-- <meta property="og:url" content="https://yourdomain.com/"> -->
-    <meta property="og:site_name" content="Flagship">
+    <meta property="og:site_name" content="Flagify">
 
     <meta name="theme-color" content="#12171f">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,18 +49,18 @@
 
 <body>
     <div class="updateToast" id="updateToast" hidden role="status">
-        <span>✨ A new version of Flagship is ready.</span>
+        <span>✨ A new version of Flagify is ready.</span>
         <button class="btn secondary" id="btnUpdateRefresh">Refresh</button>
     </div>
     <div class="wrap" id="app" hidden>
         <header>
             <h1><img class="logo"
                     src="https://res.cloudinary.com/dkds78kb3/image/upload/v1783549276/Flag_of_Ghana_vevbfy.png" alt=""
-                    aria-hidden="true" />Flagship</h1> <span class="badge" id="progressBadge"
+                    aria-hidden="true" />Flagify</h1> <span class="badge" id="progressBadge"
                 title="Your progress is saved to this device.">Progress: <strong id="badgeProgress"
                     style="color:var(--text)">0%</strong></span>
             <div class="toolbar">
-                <button class="btn secondary" id="btnInstall" hidden title="Install Flagship as an app on this device">⬇
+                <button class="btn secondary" id="btnInstall" hidden title="Install Flagify as an app on this device">⬇
                     Install App</button>
                 <button class="btn secondary" id="btnSkip" title="Skip question (no penalty)"><span>⏭
                         Skip</span></button> <button class="btn ghost" id="btnReview" title="Review mistakes">🧠
