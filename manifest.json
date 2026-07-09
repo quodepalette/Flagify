@@ -1,4 +1,5 @@
 {
+  "id": "/",
   "name": "Flagship",
   "short_name": "Flagship",
   "description": "Guess every country's flag. 197 UN-recognized countries, progress saved on your device.",
@@ -6,8 +7,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#f7f3ea",
-  "theme_color": "#f7f3ea",
+  "background_color": "#12171f",
+  "theme_color": "#12171f",
   "icons": [
     {
       "src": "icons/icon-192.png",

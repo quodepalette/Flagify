@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="utf-8" />
@@ -39,7 +39,7 @@
     <!-- <meta property="og:url" content="https://yourdomain.com/"> -->
     <meta property="og:site_name" content="Flagship">
 
-    <meta name="theme-color" content="#f7f3ea">
+    <meta name="theme-color" content="#12171f">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -56,6 +56,8 @@
                 title="Your progress is saved to this device.">Progress: <strong id="badgeProgress"
                     style="color:var(--text)">0%</strong></span>
             <div class="toolbar">
+                <button class="btn secondary" id="btnInstall" hidden title="Install Flagship as an app on this device">⬇
+                    Install App</button>
                 <button class="btn secondary" id="btnSkip" title="Skip question (no penalty)"><span>⏭
                         Skip</span></button> <button class="btn ghost" id="btnReview" title="Review mistakes">🧠
                     Review</button> <label class="toggle" id="themeToggle" title="Toggle light / dark"> <input
@@ -219,19 +221,19 @@
             </p>
             <p> <span class="general-emphasis">C:</span> Cambodia, Cameroon, Canada, Cape Verde, Central African
                 Republic,
-                Chad, Chile, China, Colombia, Comoros, Costa Rica, Croatia, Cuba, Cyprus, Czech Republic </p>
-            <p> <span class="general-emphasis">D:</span> Democratic Republic of Congo, Denmark, Djibouti, Dominica,
+                Chad, Chile, China, Colombia, Comoros, Costa Rica, Croatia, Cuba, Cyprus, Czechia </p>
+            <p> <span class="general-emphasis">D:</span> DR Congo, Denmark, Djibouti, Dominica,
                 Dominican Republic </p>
-            <p> <span class="general-emphasis">E:</span> East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea,
+            <p> <span class="general-emphasis">E:</span> Ecuador, Egypt, El Salvador, Equatorial Guinea,
                 Eritrea, Estonia, Eswatini, Ethiopia </p>
             <p><span class="general-emphasis">F:</span> Fiji, Finland, France</p>
             <p> <span class="general-emphasis">G:</span> Gabon, Gambia, Georgia, Germany, <span>Ghana</span>, Greece,
-                Grenada, Guatemala, Guinea-Conakry, Guinea-Bissau, Guyana </p>
+                Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana </p>
             <p> <span class="general-emphasis">H:</span> Haiti, Honduras, Hungary </p>
             <p> <span class="general-emphasis">I:</span> Iceland, India, Indonesia, Iran, Iraq, Ireland, Israel, Italy,
                 Ivory Coast </p>
             <p><span class="general-emphasis">J:</span> Jamaica, Japan, Jordan</p>
-            <p> <span class="general-emphasis">K:</span> Kazakhstan, Kenya, Kiribati, Korea, North, Korea, South,
+            <p> <span class="general-emphasis">K:</span> Kazakhstan, Kenya, Kiribati,
                 Kosovo,
                 Kuwait, Kyrgyzstan </p>
             <p> <span class="general-emphasis">L:</span> Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein,
@@ -241,7 +243,7 @@
                 Mozambique, Myanmar </p>
             <p> <span class="general-emphasis">N:</span> Namibia, Nauru, Nepal, Netherlands, New Zealand, Nicaragua,
                 Niger,
-                Nigeria, North Macedonia, Norway </p>
+                Nigeria, North Korea, North Macedonia, Norway </p>
             <p><span class="general-emphasis">O:</span> Oman</p>
             <p> <span class="general-emphasis">P:</span> Pakistan, Palau, Palestine, Panama, Papua New Guinea, Paraguay,
                 Peru, Philippines, Poland, Portugal </p>
@@ -249,12 +251,13 @@
             <p> <span class="general-emphasis">R:</span> Republic of the Congo, Romania, Russia, Rwanda </p>
             <p> <span class="general-emphasis">S:</span> Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the
                 Grenadines, Samoa, San Marino, São Tomé and Príncipe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra
-                Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, South Sudan, Spain, Sri
-                Lanka,
-                Sudan, Suriname, Sweden, Switzerland, </p>
-            <p> <span class="general-emphasis">T:</span> Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad
+                Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, South Korea, South Sudan,
+                Spain, Sri Lanka,
+                Sudan, Suriname, Sweden, Switzerland, Syria </p>
+            <p> <span class="general-emphasis">T:</span> Taiwan, Tajikistan, Tanzania, Thailand, Timor-Leste, Togo,
+                Tonga, Trinidad
                 and
-                Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu </p>
+                Tobago, Tunisia, Türkiye, Turkmenistan, Tuvalu </p>
             <p> <span class="general-emphasis">U:</span> Uganda, Ukraine, United Arab Emirates, United Kingdom, United
                 States, Uruguay, Uzbekistan </p>
             <p> <span class="general-emphasis">V:</span> Vanuatu, Vatican City, Venezuela, Vietnam </p>
@@ -284,26 +287,55 @@
                 ratio
                 of coastline compared to its total area. </p>
 
-            <p> There are <span class="general-emphasis">49</span> countries in <span
+            <p> There are <span class="general-emphasis">48</span> countries in <span
                     class="general-emphasis">Asia</span>,
-                including several countries like Russia, Turkey, and Georgia, that are geographically located in both
-                Asia
-                and Europe, and are often considered part of Europe as well. </p>
+                including transcontinental countries like Georgia and Türkiye, which straddle the boundary with Europe
+                but are counted here as Asian. </p>
+            <p class="continent-list"> Afghanistan, Armenia, Azerbaijan, Bahrain, Bangladesh, Bhutan, Brunei,
+                Cambodia, China, Georgia, India, Indonesia, Iran, Iraq, Israel, Japan, Jordan, Kazakhstan, Kuwait,
+                Kyrgyzstan, Laos, Lebanon, Malaysia, Maldives, Mongolia, Myanmar, Nepal, North Korea, Oman, Pakistan,
+                Palestine, Philippines, Qatar, Saudi Arabia, Singapore, South Korea, Sri Lanka, Syria, Taiwan,
+                Tajikistan, Thailand, Timor-Leste, Turkmenistan, Türkiye, United Arab Emirates, Uzbekistan, Vietnam,
+                Yemen </p>
 
             <p> There are <span class="general-emphasis">54</span> countries in <span
                     class="general-emphasis">Africa</span>, making it the continent with the highest number of
                 countries.
             </p>
-            <p> There are <span class="general-emphasis">23</span> countries in <span class="general-emphasis">North
+            <p class="continent-list"> Algeria, Angola, Benin, Botswana, Burkina Faso, Burundi, Cameroon, Cape Verde,
+                Central African Republic, Chad, Comoros, DR Congo, Djibouti, Egypt, Equatorial Guinea, Eritrea,
+                Eswatini, Ethiopia, Gabon, Gambia, Ghana, Guinea, Guinea-Bissau, Ivory Coast, Kenya, Lesotho, Liberia,
+                Libya, Madagascar, Malawi, Mali, Mauritania, Mauritius, Morocco, Mozambique, Namibia, Niger, Nigeria,
+                Republic of the Congo, Rwanda, Senegal, Seychelles, Sierra Leone, Somalia, South Africa, South Sudan,
+                Sudan, São Tomé and Príncipe, Tanzania, Togo, Tunisia, Uganda, Zambia, Zimbabwe </p>
+
+            <p> There are <span class="general-emphasis">35</span> countries across the Americas — <span
+                    class="general-emphasis">23</span> in <span class="general-emphasis">North
                     America</span>, including <span class="general-emphasis">7</span> countries that are part of <span
-                    class="general-emphasis">Central America</span>. </p>
+                    class="general-emphasis">Central America</span>, and <span class="general-emphasis">12</span> in
+                <span class="general-emphasis">South America</span>. </p>
+            <p class="continent-list"> <span class="general-emphasis">North America:</span> Antigua and Barbuda,
+                Bahamas, Barbados, Belize, Canada, Costa Rica, Cuba, Dominica, Dominican Republic, El Salvador,
+                Grenada, Guatemala, Haiti, Honduras, Jamaica, Mexico, Nicaragua, Panama, Saint Kitts and Nevis, Saint
+                Lucia, Saint Vincent and the Grenadines, Trinidad and Tobago, United States </p>
+            <p class="continent-list"> <span class="general-emphasis">South America:</span> Argentina, Bolivia,
+                Brazil, Chile, Colombia, Ecuador, Guyana, Paraguay, Peru, Suriname, Uruguay, Venezuela </p>
 
-            <p> There are <span class="general-emphasis">12</span> countries in <span class="general-emphasis">South
-                    America</span>, each with its own unique culture and history. </p>
-
-            <p> There are <span class="general-emphasis">44</span> countries in <span
+            <p> There are <span class="general-emphasis">46</span> countries in <span
                     class="general-emphasis">Europe</span>, including <span class="general-emphasis">27</span> countries
-                that are part of the <span class="general-emphasis">European Union</span>. </p>
+                that are part of the <span class="general-emphasis">European Union</span>, and Russia, whose territory
+                extends across both Europe and Asia. </p>
+            <p class="continent-list"> Albania, Andorra, Austria, Belarus, Belgium, Bosnia and Herzegovina, Bulgaria,
+                Croatia, Cyprus, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland,
+                Ireland, Italy, Kosovo, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Moldova, Monaco,
+                Montenegro, Netherlands, North Macedonia, Norway, Poland, Portugal, Romania, Russia, San Marino,
+                Serbia, Slovakia, Slovenia, Spain, Sweden, Switzerland, Ukraine, United Kingdom, Vatican City </p>
+
+            <p> There are <span class="general-emphasis">14</span> countries in <span
+                    class="general-emphasis">Oceania</span>, ranging from Australia down to small Pacific island
+                nations like Tuvalu and Nauru. </p>
+            <p class="continent-list"> Australia, Fiji, Kiribati, Marshall Islands, Micronesia, Nauru, New Zealand,
+                Palau, Papua New Guinea, Samoa, Solomon Islands, Tonga, Tuvalu, Vanuatu </p>
         </div>
     </main>
     </div>

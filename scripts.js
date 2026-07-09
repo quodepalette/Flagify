@@ -55,6 +55,41 @@
         .catch((err) => console.warn('Service worker registration failed:', err));
     });
   }
+
+  /*** PWA — INSTALL PROMPT ***/
+  // Chrome/Edge fire this once the browser decides the app meets the
+  // installability criteria (manifest + reachable icons + service worker
+  // over HTTPS). We stash the event and reveal our own button instead of
+  // relying on the easy-to-miss address-bar icon.
+  const btnInstall = qs('#btnInstall');
+  let deferredInstallPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    if (btnInstall) btnInstall.hidden = false;
+  });
+
+  if (btnInstall) {
+    btnInstall.addEventListener('click', async () => {
+      if (!deferredInstallPrompt) return;
+      btnInstall.hidden = true;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+    });
+  }
+
+  // Already installed, or user just installed it — hide the button and
+  // don't show it again for this launch.
+  window.addEventListener('appinstalled', () => {
+    if (btnInstall) btnInstall.hidden = true;
+    deferredInstallPrompt = null;
+  });
+
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+    if (btnInstall) btnInstall.hidden = true;
+  }
   const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
   ).matches;
@@ -98,7 +133,7 @@
   let practiceStreak = 0;
 
   /*** THEME ***/
-  const savedTheme = localStorage.getItem('flagship.theme') || 'light';
+  const savedTheme = localStorage.getItem('flagship.theme') || 'dark';
   document.documentElement.dataset.theme = savedTheme;
   themeToggle.checked = savedTheme === 'dark';
   themeToggle.addEventListener('change', () => {
