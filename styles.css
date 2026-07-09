@@ -1025,7 +1025,7 @@ dialog[open] {
 .updateToast {
     position: fixed;
     left: 50%;
-    bottom: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom));
     transform: translateX(-50%);
     z-index: 1000;
     display: flex;
@@ -1038,7 +1038,31 @@ dialog[open] {
     box-shadow: var(--shadow);
     color: var(--text);
     font-size: 14px;
-    max-width: calc(100vw - 32px);
+    width: min(420px, calc(100vw - 32px));
+    box-sizing: border-box;
+}
+
+.updateToast span {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.updateToast .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+    .updateToast {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .updateToast .btn {
+        width: 100%;
+    }
 }
 
 .updateToast[hidden] {
