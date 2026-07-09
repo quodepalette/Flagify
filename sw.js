@@ -1,7 +1,7 @@
 // Flagify service worker — offline-first cache for the app shell.
 // Bump this version string whenever you change index.html/scripts.js/styles.css
 // so returning visitors pick up the new files instead of a stale cache.
-const CACHE_NAME = 'flagify-cache-v3';
+const CACHE_NAME = 'flagify-cache-v4';
 const APP_SHELL = [
   './',
   './index.html',
@@ -53,7 +53,26 @@ self.addEventListener('fetch', (event) => {
           }
           return response;
         })
-        .catch(() => cached);
+        .catch(() => {
+          // Network failed and we had nothing cached for this exact
+          // request. Returning `undefined` here (the old behavior, via
+          // `.catch(() => cached)` where `cached` was undefined) is invalid
+          // for respondWith() and Chrome/Brave turn that into a hard
+          // net::ERR_FAILED for the whole navigation — even for users who
+          // already have the app shell cached.
+          //
+          // For page navigations, fall back to the cached shell so the app
+          // still opens instead of hard-failing during a network blip.
+          if (event.request.mode === 'navigate') {
+            return caches.match('./index.html').then(
+              (shell) => shell || Response.error()
+            );
+          }
+          // For everything else (images, data, etc.) let it fail as a
+          // normal, well-formed network error response instead of an
+          // invalid undefined value.
+          return Response.error();
+        });
     })
   );
 });
